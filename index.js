@@ -26,21 +26,25 @@ interact('.draggable')
     }
   });
 
-  function dragMoveListener (event) {
-    var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+function dragMoveListener (event) {
+  var target = event.target,
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-    // translate the element
-    target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+  // translate the element
+  target.style.webkitTransform =
+  target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
 
-    // update the posiion attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  }
+  // update the posiion attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+}
+
+// ============ NOT DRAGGING CODE =============
+
+initDeck();
 
 function collect() {
   deckPosX = "0px";
@@ -92,4 +96,16 @@ function initDeck() {
 
 }
 
-initDeck();
+function lineup(suit) {
+  var suitCards = ["1","2","3","4","5","6","7","8","9","10","Page","Knight","Queen","King"];
+  var cards = document.getElementsByClassName("suit-"+suit);
+  var posx = 85;
+  var posy = 0;
+
+  for (var i = 0; i < suitCards.length; i++) {
+    cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
+    cards[i].dataset.x = posx+"px";
+    cards[i].dataset.y = posy+"px";
+    posx += 85;
+  }
+}

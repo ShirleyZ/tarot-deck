@@ -4,6 +4,14 @@
   <title>Tarot Deck</title>
   <script src="node_modules/interactjs/dist/interact.min.js"></script>
   <style type="text/css">
+    body {
+      margin: 0;
+    }
+    #wrapper {
+      padding: 5px;
+      background-color: #5f4230;
+      height: 100vh;
+    }
     .card {
       width: 70px;
       height: 120px;
@@ -11,6 +19,8 @@
       text-align: center;
       position: absolute;
       overflow: hidden;
+      border: 1px solid;
+      border-radius: 3px;
     }
     button {
       width: 75px;
@@ -34,6 +44,10 @@
   <div id="wrapper">
     <button onclick="collect()">Reset</button>
     <button onclick="shuffle()">Shuffle</button>
+    <button onclick="lineup('cups')">Cups</button>
+    <button onclick="lineup('swords')">swords</button>
+    <button onclick="lineup('wands')">wands</button>
+    <button onclick="lineup('pentacles')">pentacles</button>
     <div id="card-mat">
     </div>
   </div>
