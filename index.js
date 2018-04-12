@@ -4,11 +4,11 @@ interact('.draggable')
     // enable inertial throwing
     // inertia: true,
     // keep the element within the area of it's parent
-    // restrict: {
-    //   restriction: "parent",
-    //   endOnly: true,
-    //   elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    // },
+    restrict: {
+      restriction: "parent",
+      endOnly: true,
+      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+    },
     // enable autoScroll
     // autoScroll: true,
 
@@ -86,9 +86,14 @@ function initDeck() {
     for (var j = 0; j < suitCards.length; j++) {
       var p = document.createTextNode(suitCards[j]+" of "+suits[i]);
       var cardElem = document.createElement('div');
+      var cardBackElem = document.createElement('div');
+      cardBackElem.className = "card-back";
       cardElem.className = "draggable card suit-"+suits[i];
       cardElem.id = suits[i]+"-"+suitCards[j];
+
+      cardElem.append(cardBackElem);
       cardElem.append(p);
+
       cardMat.append(cardElem);
       counter++;
     }
@@ -101,11 +106,35 @@ function lineup(suit) {
   var cards = document.getElementsByClassName("suit-"+suit);
   var posx = 85;
   var posy = 0;
+  var incrXBy = 85;
+  var incrYBy = 140;
 
   for (var i = 0; i < suitCards.length; i++) {
     cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
     cards[i].dataset.x = posx+"px";
     cards[i].dataset.y = posy+"px";
-    posx += 85;
+    posx += incrXBy;
+    if (posx+incrXBy+15 > window.innerWidth) {
+      posx = incrXBy;
+      posy += incrYBy;
+    }
+  }
+}
+
+function cardBacks(mode) {
+  console.log("== cardBacks");
+  var modeClass = {
+    "show": "shown",
+    "hide": "flipped",
+    "peek": "peek"
+  }
+  console.log(mode+": "+modeClass[mode]);
+  var cards = document.getElementsByClassName('card');
+
+  for (var i = 0; i < cards.length; i++) {
+    for (var key in modeClass) {
+      cards[i].classList.remove(modeClass[key]);
+    }
+    cards[i].classList.add(modeClass[mode]);
   }
 }
