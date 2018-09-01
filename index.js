@@ -91,7 +91,9 @@ function initDeck() {
   console.log(cardMat);
   for (var i = 0; i < suits.length; i++) {
     for (var j = 0; j < suitCards.length; j++) {
-      var p = document.createTextNode(suitCards[j]+" of "+suits[i]);
+      var text = document.createTextNode(suitCards[j]+" of "+suits[i]);
+      var p = document.createElement('p');
+      p.append(text);
       var cardElem = document.createElement('div');
       var cardBackElem = document.createElement('div');
       var cardFaceElem = document.createElement('div');
@@ -118,13 +120,14 @@ function lineup(suit) {
   var posy = 0;
   var incrXBy = 85;
   var incrYBy = 140;
+  var rowWidth = 400;
 
   for (var i = 0; i < suitCards.length; i++) {
     cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
     cards[i].dataset.x = posx+"px";
     cards[i].dataset.y = posy+"px";
     posx += incrXBy;
-    if (posx+incrXBy+15 > window.innerWidth) {
+    if (posx+incrXBy+15 > rowWidth) {
       posx = incrXBy;
       posy += incrYBy;
     }
