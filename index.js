@@ -65,11 +65,11 @@ function shuffle() {
   var max = 0;
   var index = 0;
   var tmp = 0;
-  for (var i = 2; i < cards.length+1; i++) {
+  for (var i = 0; i < cards.length; i++) {
     max = newOrder.length;
     index = Math.floor(Math.random() * Math.floor(max));
     tmp = Math.random();
-    if (tmp > 0.5) {
+    if (tmp > 0.5 && cards[i] != undefined) {
       cards[i].classList.add("reversed");
     } else {
       cards[i].classList.remove("reversed");
