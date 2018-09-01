@@ -8,14 +8,23 @@
       margin: 0;
     }
     #wrapper {
-      padding: 5px;
-      background-color: #5f4230;
+      background-color: #2e242f;
       height: 100vh;
+    }
+    #action-bar {
+      width: 110px;
+      float: left;
+      padding: 5px;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      text-align: center;
     }
     #card-mat {
       height: 90vh;
       margin: 15px;
       border: 1px solid;
+      float: left;
+      min-width: 750px;
     }
     .card {
       width: 70px;
@@ -42,43 +51,65 @@
       top: 0;
       left: 0;
     }
+    .card-front {
+      border-radius: 40px;
+    }
 
     .shown .card-back,
     .peek .card-back:hover {
       background-image: url('');
     }
+    .reversed {
+      transform: rotate(180deg);
+    }
+
     button {
       width: 105px;
       height: 50px;
+      float: left;
+      border-radius: 10px;
       font-size: 16px;
+      margin: 5px 0;
     }
-    .suit-cups {
-      background-color: #a6e5ed;
+    .suit-cups .card-front {
+      background-color: #5b99a0;
     }
-    .suit-wands {
+    .suit-wands .card-front {
       background-color: #ad3d3d;
     }
-    .suit-swords {
+    .suit-swords .card-front {
       background-color: #cadbe0;
     }
-    .suit-pentacles {
-      background-color: #87c86f;
+    .suit-pentacles .card-front {
+      background-color: #6c945d;
     }
   </style>
 </head>
 <body>
   <div id="wrapper">
-    <button onclick="collect()">Reset</button>
-    <button onclick="shuffle()">Shuffle</button>
-    <button onclick="cardBacks('show')">Show cards</button>
-    <button onclick="cardBacks('hide')">Hide cards</button>
-    <button onclick="cardBacks('peek')">Peek at cards</button>
-    <br>
-    <button onclick="lineup('cups')">Cups</button>
-    <button onclick="lineup('swords')">swords</button>
-    <button onclick="lineup('wands')">wands</button>
-    <button onclick="lineup('pentacles')">pentacles</button>
-    <br>
+    <div id="action-bar">
+      <div>
+        <h4>Deck actions</h4>
+        <button onclick="collect()">Collect</button>
+        <button onclick="shuffle()">Shuffle</button>
+        <br clear="both">
+      </div>
+      <div>
+        <h4>Change card display behaviour</h4>
+        <button onclick="cardBacks('show')">Show cards</button>
+        <button onclick="cardBacks('hide')">Hide cards</button>
+        <button onclick="cardBacks('peek')">Peek at cards</button>
+        <br clear="both">
+      </div>
+      <div>
+        <h4>Pull out specific suit</h4>
+        <button onclick="lineup('cups')">Cups</button>
+        <button onclick="lineup('swords')">swords</button>
+        <button onclick="lineup('wands')">wands</button>
+        <button onclick="lineup('pentacles')">pentacles</button>
+        <br clear="both">
+      </div>
+    </div>
     <div id="card-mat">
     </div>
   </div>

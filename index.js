@@ -64,9 +64,16 @@ function shuffle() {
   var newOrder = [1];
   var max = 0;
   var index = 0;
+  var tmp = 0;
   for (var i = 2; i < cards.length+1; i++) {
     max = newOrder.length;
     index = Math.floor(Math.random() * Math.floor(max));
+    tmp = Math.random();
+    if (tmp > 0.5) {
+      cards[i].classList.add("reversed");
+    } else {
+      cards[i].classList.remove("reversed");
+    }
     newOrder.splice(index,0,i);
   }
 
@@ -89,9 +96,9 @@ function initDeck() {
       var cardBackElem = document.createElement('div');
       var cardFaceElem = document.createElement('div');
       cardBackElem.className = "card-back";
-      cardElem.className = "draggable card deck-default";
+      cardElem.className = "draggable card deck-default suit-"+suits[i];
       cardFaceElem.id = suits[i]+"-"+suitCards[j];
-      cardFaceElem.className = "card-front suit-"+suits[i];
+      cardFaceElem.className = "card-front";
 
       cardElem.append(cardBackElem);
       cardFaceElem.append(p);
