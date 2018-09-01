@@ -114,6 +114,7 @@ function initDeck() {
       counter++;
     }
   }
+  shuffle();
 
 }
 
