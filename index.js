@@ -37,6 +37,10 @@ function dragMoveListener (event) {
   target.style.transform =
     'translate(' + x + 'px, ' + y + 'px)';
 
+  if (target.classList.contains('reversed')) {
+    target.style.transform += "rotate(180deg)"
+  }
+
   // update the posiion attributes
   target.setAttribute('data-x', x);
   target.setAttribute('data-y', y);
