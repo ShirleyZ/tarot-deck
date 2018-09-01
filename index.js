@@ -87,12 +87,15 @@ function initDeck() {
       var p = document.createTextNode(suitCards[j]+" of "+suits[i]);
       var cardElem = document.createElement('div');
       var cardBackElem = document.createElement('div');
+      var cardFaceElem = document.createElement('div');
       cardBackElem.className = "card-back";
-      cardElem.className = "draggable card suit-"+suits[i];
-      cardElem.id = suits[i]+"-"+suitCards[j];
+      cardElem.className = "draggable card deck-default";
+      cardFaceElem.id = suits[i]+"-"+suitCards[j];
+      cardFaceElem.className = "card-front suit-"+suits[i];
 
       cardElem.append(cardBackElem);
-      cardElem.append(p);
+      cardFaceElem.append(p);
+      cardElem.append(cardFaceElem);
 
       cardMat.append(cardElem);
       counter++;

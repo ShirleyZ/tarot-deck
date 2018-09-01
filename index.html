@@ -27,17 +27,25 @@
       border: 1px solid;
       border-radius: 3px;
     }
-    .card-back {
+    .deck-default {
+      background-color: #222523;
+    }
+    .card-back,
+    .card-front {
       height: 100%;
       width: 100%;
+    }
+    .card-back {
       position: absolute;
-      background-color: red;
+      background-image: url('assets/card_back.png');
+      background-size: 80px 127px;
       top: 0;
       left: 0;
     }
+
     .shown .card-back,
     .peek .card-back:hover {
-      background-color: #00000000;
+      background-image: url('');
     }
     button {
       width: 105px;
@@ -72,7 +80,6 @@
     <button onclick="lineup('pentacles')">pentacles</button>
     <br>
     <div id="card-mat">
-      <div id="card-0" class="card draggable flipped" style="z-index:100"><div class="card-back"></div>TEST DECK</div>
     </div>
   </div>
   <script src="index.js"></script>
