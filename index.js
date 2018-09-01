@@ -129,6 +129,9 @@ function lineup(suit) {
 
   for (var i = 0; i < suitCards.length; i++) {
     cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
+    if (target.classList.contains('reversed')) {
+      target.style.transform += "rotate(180deg)"
+    }
     cards[i].dataset.x = posx+"px";
     cards[i].dataset.y = posy+"px";
     posx += incrXBy;
