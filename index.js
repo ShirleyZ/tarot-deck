@@ -89,10 +89,12 @@ function shuffle() {
 function initDeck() {
   var suits = ["cups","wands","swords","pentacles"];
   var suitCards = ["1","2","3","4","5","6","7","8","9","10","Page","Knight","Queen","King"];
-  var counter = 1;
+  var majorArcana = ["The Fool", "The Magician", "The High Priestess","The Empress","The Emperor","The Hierophant","The Lovers","The Chariot","Strength","The Hermit","Wheel of Fortune","Justice","The Hanged Man","Death","Temperance","The Devil","The Tower","The Star","The Moon","The Sun","Judgement","The World"];
 
   var cardMat = document.getElementById("card-mat");
   console.log(cardMat);
+
+  // The Minor Arcana
   for (var i = 0; i < suits.length; i++) {
     for (var j = 0; j < suitCards.length; j++) {
       var text = document.createTextNode(suitCards[j]+" of "+suits[i]);
@@ -111,8 +113,28 @@ function initDeck() {
       cardElem.append(cardFaceElem);
 
       cardMat.append(cardElem);
-      counter++;
     }
+  }
+
+  // The Major Arcana
+  for (let k = 0; k < majorArcana.length; k++) {
+    var text = document.createTextNode(majorArcana[k]);
+    var p = document.createElement('p');
+    p.append(text);
+    var cardElem = document.createElement('div');
+    var cardBackElem = document.createElement('div');
+    var cardFaceElem = document.createElement('div');
+    cardBackElem.className = "card-back";
+    cardElem.className = "draggable card deck-default suit-major-arcana";
+    var cardId = majorArcana[k].replace(' ','-').toLowerCase();
+    cardFaceElem.id = cardId;
+    cardFaceElem.className = "card-front";
+
+    cardElem.append(cardBackElem);
+    cardFaceElem.append(p);
+    cardElem.append(cardFaceElem);
+
+    cardMat.append(cardElem);
   }
   shuffle();
 
