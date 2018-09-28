@@ -26,6 +26,8 @@ interact('.draggable')
     }
   });
 
+var highestZIndex = 75;
+
 function dragMoveListener (event) {
   var target = event.target,
       // keep the dragged position in the data-x/data-y attributes
@@ -84,6 +86,7 @@ function shuffle() {
   for (var i = 0; i < cards.length; i++) {
     cards[i].style["z-index"] = newOrder[i];
   }
+  highestZIndex = 75;
   redrawCards();
 }
 
@@ -165,6 +168,8 @@ function lineup(suit) {
       posx = incrXBy;
       posy += incrYBy;
     }
+    cards[i].style["z-index"] = highestZIndex; // Top level always
+    highestZIndex++;
   }
 }
 
