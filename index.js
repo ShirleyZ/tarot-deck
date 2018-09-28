@@ -84,6 +84,7 @@ function shuffle() {
   for (var i = 0; i < cards.length; i++) {
     cards[i].style["z-index"] = newOrder[i];
   }
+  redrawCards();
 }
 
 function initDeck() {
@@ -142,6 +143,9 @@ function initDeck() {
 
 function lineup(suit) {
   var suitCards = ["1","2","3","4","5","6","7","8","9","10","Page","Knight","Queen","King"];
+  if (suit == "major") {
+    suit = "major-arcana";
+  }
   var cards = document.getElementsByClassName("suit-"+suit);
   var posx = 85;
   var posy = 0;
@@ -149,7 +153,7 @@ function lineup(suit) {
   var incrYBy = 140;
   var rowWidth = 400;
 
-  for (var i = 0; i < suitCards.length; i++) {
+  for (var i = 0; i < cards.length; i++) {
     cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
     if (cards[i].classList.contains('reversed')) {
       cards[i].style.transform += "rotate(180deg)"
@@ -179,5 +183,19 @@ function cardBacks(mode) {
       cards[i].classList.remove(modeClass[key]);
     }
     cards[i].classList.add(modeClass[mode]);
+  }
+}
+
+function redrawCards() {
+  var cards = document.getElementsByClassName("card");
+  for (var i = 0; i < cards.length; i++) {
+    var posx = cards[i].getAttribute('data-x');
+    var posy = cards[i].getAttribute('data-y');
+    cards[i].style.transform = "translate("+posx+"px,"+posy+"px)";
+    if (cards[i].classList.contains('reversed')) {
+      cards[i].style.transform += "rotate(180deg)"
+    }
+    cards[i].dataset.x = posx+"px";
+    cards[i].dataset.y = posy+"px";
   }
 }
